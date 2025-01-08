@@ -1,7 +1,13 @@
+<?php
+$sanitized = str_replace(',', '', $price); 
+$priceS = floatval($sanitized); 
+?>
 <div class="container mt-5">
     <div class="row justify-content-center">
+        <!-- Card principal -->
         <div class="col-12">
             <div class="card d-flex flex-row align-items-center p-3">
+                <!-- Imagen del perfume -->
                 <div class="w-50 text-center">
                     <img src="<?php echo PUB ?>uploads/perfumes/<?php echo $image ?>" 
                          class="img-fluid" 
@@ -23,35 +29,32 @@
                     </div>
                     <!-- Modo edición -->
                     <div id="edit-mode" class="d-none">
-                        <form action="../business_logic/perfumes/update_perfume.php?id=<?php echo $perfume_id; ?>" method="post">
+                        <form id="form" action="../business_logic/perfumes/update_perfume.php" method="post">
+                            <input type="hidden" id="perfumeId" value="<?php echo $perfume_id; ?>">
                             <label for="name-input" class="form-label">Nombre</label>
-                            <input type="text" name="name" id="name-input" class="form-control mb-2" value="<?php echo $name; ?>" required/>
+                            <input type="text" name="name" id="name-input" class="form-control mb-2" value="<?php echo $name; ?>" />
 
                             <label for="brand-input" class="form-label">Marca</label>
-                            <input type="text" name="brand" id="brand-input" class="form-control mb-2" value="<?php echo $brand; ?>" required/>
+                            <input type="text"  name="brand" id="brand-input" class="form-control mb-2" value="<?php echo $brand; ?>" />
 
                             <label for="gender-input" class="form-label">Género</label>
-                            <select id="gender-input" name="gender" class="form-select mb-2" required>
+                            <select id="gender-input"  name="gender" class="form-select mb-2">
                                 <option value="Masculino" <?php if ($gender === 'Masculino') echo 'selected'; ?>>Masculino</option>
                                 <option value="Femenino" <?php if ($gender === 'Femenino') echo 'selected'; ?>>Femenino</option>
                                 <option value="Unisex" <?php if ($gender === 'Unisex') echo 'selected'; ?>>Unisex</option>
                             </select>
 
                             <label for="size-input" class="form-label">Tamaño (ml)</label>
-                            <input type="number" name="size" id="size-input" class="form-control mb-2" value="<?php echo $size; ?>" required/>
+                            <input type="number"  name="size" id="size-input" class="form-control mb-2" value="<?php echo $size; ?>" />
 
                             <label for="concentration-input" class="form-label">Concentración</label>
-                            <input type="text" name="concentration" id="concentration-input" class="form-control mb-2" value="<?php echo $concentration; ?>" required/>
+                            <input type="text"  name="concentration" id="concentration-input" class="form-control mb-2" value="<?php echo $concentration; ?>" />
 
                             <label for="price-input" class="form-label">Precio</label>
-                            <input type="number" name="price" id="price-input" class="form-control mb-2" value="<?php echo number_format($price, 2, '.', ''); ?>" required step="0.01">
+                            <input type="number"  name="price" id="price-input" class="form-control mb-2" value="<?php echo $priceS; ?>" />
 
-
-                            <label for="image-input" class="form-label">Imagen</label>
-                            <input type="file" name="image" id="image-input" class="form-control mb-2" accept="image/*"/>
-
-                            <button class="btn btn-success mt-3" id="save-button" type="submit" >Guardar</button>
-                            <button class="btn btn-danger mt-3" id="cancel-button">Cancelar</button>
+                            <button class="btn btn-success mt-3" type="submit" id="save-button">Guardar</button>
+                            <div class="btn btn-danger mt-3" id="cancel-button">Cancelar</div>
                         </form>
                     </div>
                 </div>
@@ -61,22 +64,17 @@
 </div>
 
 <script>
+    // Variables para los elementos
     const viewMode = document.getElementById('view-mode');
     const editMode = document.getElementById('edit-mode');
     const editButton = document.getElementById('edit-button');
     const saveButton = document.getElementById('save-button');
     const cancelButton = document.getElementById('cancel-button');
 
+    // Mostrar modo edición
     editButton.addEventListener('click', () => {
         viewMode.classList.add('d-none');
         editMode.classList.remove('d-none');
-    });
-
-    // Guardar cambios y volver al modo visualización
-    saveButton.addEventListener('click', () => {
-        // Volver al modo visualización
-        editMode.classList.add('d-none');
-        viewMode.classList.remove('d-none');
     });
 
     // Cancelar edición y volver al modo visualización

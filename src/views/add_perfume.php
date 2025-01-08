@@ -62,7 +62,7 @@ if ($result->num_rows == 1) {
                 $inputs = [
                     ['label' => 'Nombre', 'name' => 'name', 'type' => 'text', 'col' => 'col-md-6'],
                     ['label' => 'Marca', 'name' => 'brand', 'type' => 'text', 'col' => 'col-md-6'],
-                    ['label' => 'Genero', 'name' => 'gender', 'type' => 'select', 'col' => 'col-md-6', 'options' => ['Seleccione una opción', 'Masculino', 'Femenino', 'Unisex']],
+                    ['label' => 'Genero', 'name' => 'gender', 'type' => 'select', 'col' => 'col-md-6', 'options' => ['Masculino', 'Femenino', 'Unisex']],
                     ['label' => 'precio', 'name' => 'price', 'type' => 'number', 'col' => 'col-md-6'],
                     ['label' => 'imagen', 'name' => 'image', 'type' => 'file', 'col' => 'col-md-12'],
                     ['label' => 'tamaño en mls', 'name' => 'size', 'type' => 'number', 'col' => 'col-md-6'],
