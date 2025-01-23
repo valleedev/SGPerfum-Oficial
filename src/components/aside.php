@@ -29,40 +29,36 @@
 
                     <li class="menu-title">NAVEGACIÓN</li>
 
-                    <li class="menu-item">
-                        <a href="apps-calendar.html" class="menu-link waves-effect waves-light">
-                            <span class="menu-icon"><i class="bx bxs-user-account"></i></span>
-                            <span class="menu-text"> Clientes </span>
-                        </a>
-                    </li>
 
                     <li class="menu-item">
                         <a href="#menuExpages" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
                             <span class="menu-icon"><i class="bx bxl-product-hunt"></i></span>
-                            <span class="menu-text"> Gestion de perfumes </span>
+                            <span class="menu-text"> Gestion de fragancias </span>
                             <span class="menu-arrow"></span>
                         </a>
                         <div class="collapse" id="menuExpages">
                             <ul class="sub-menu">
                                 <li class="menu-item">
                                     <a href="<?= VIEWS ?>add_perfume.php" class="menu-link">
-                                        <span class="menu-text">Añadir un nuevo perfume</span>
+                                        <span class="menu-text">Añadir una nueva fragancia</span>
                                     </a>
                                 </li>
                                 <li class="menu-item">
                                     <a href="<?= VIEWS ?>list_perfumes.php" class="menu-link">
-                                        <span class="menu-text">Catálogo de perfumes</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="pages-login.html" class="menu-link">
-                                        <span class="menu-text">Precios y promociones</span>
+                                        <span class="menu-text">Inventario de fragancias</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     </li>
 
+                    
+                    <li class="menu-item">
+                        <a href="apps-calendar.html" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="bx bxs-user-account"></i></span>
+                            <span class="menu-text"> Clientes </span>
+                        </a>
+                    </li>
                     <li class="menu-item">
                         <a href="#menuLayouts" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
                             <span class="menu-icon"><i class="bx bx-layout"></i></span>

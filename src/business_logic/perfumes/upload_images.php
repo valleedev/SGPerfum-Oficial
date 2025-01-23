@@ -4,11 +4,11 @@ include '../config.php';
 
 // Función para validar el archivo de imagen
 function validateImage($image) {
-    $allowedFormats = ['image/jpeg', 'image/png', 'image/gif'];
+    $allowedFormats = ['image/jpeg', 'image/png'];
     $maxSize = 2 * 1024 * 1024; // 2MB
 
     if (!in_array($image['type'], $allowedFormats)) {
-        return 'Formato de imagen no permitido. Solo se permiten JPG, PNG o GIF.';
+        return 'Formato de imagen no permitido. Solo se permiten JPG o PNG.';
     }
 
     if ($image['size'] > $maxSize) {

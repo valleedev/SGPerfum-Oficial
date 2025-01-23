@@ -27,7 +27,7 @@ if ($result->num_rows == 1) {
 
 <head>
     <meta charset="utf-8" />
-    <title>Dashboard | SGPERFUM</title>
+    <title>Añadir Fragancias | SGPERFUM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Administrador de perfumeria" name="description" />
     <meta content="Sebastian Valle" name="author" />
@@ -53,20 +53,20 @@ if ($result->num_rows == 1) {
         
             <?php 
                 include '../components/header.php' ;
-                $title = 'Añadir un perfume nuevo';
-                $page = 'Añadir un nuevo perfume';
+                $title = 'Añadir una fragancia nueva';
+                $page = 'Añadir una nueva fragancia';
                 $extraPage = 'Gestion de perfumes';
                 include '../components/starter.php';
                 // Formulario
                 include '../components/form.php' ;
                 $inputs = [
-                    ['label' => 'Nombre', 'name' => 'name', 'type' => 'text', 'col' => 'col-md-6'],
-                    ['label' => 'Marca', 'name' => 'brand', 'type' => 'text', 'col' => 'col-md-6'],
+                    ['label' => 'Clave Bouquet', 'name' => 'keyB', 'type' => 'number', 'col' => 'col-md-2'],
+                    ['label' => 'Nombre', 'name' => 'name', 'type' => 'text', 'col' => 'col-md-10'],
+                    ['label' => 'Casa', 'name' => 'house', 'type' => 'text', 'col' => 'col-md-6'],
+                    ['label' => 'Familia Olfativa', 'name' => 'familyO', 'type' => 'text', 'col' => 'col-md-6'], 
                     ['label' => 'Genero', 'name' => 'gender', 'type' => 'select', 'col' => 'col-md-6', 'options' => ['Masculino', 'Femenino', 'Unisex']],
-                    ['label' => 'precio', 'name' => 'price', 'type' => 'number', 'col' => 'col-md-6'],
-                    ['label' => 'imagen', 'name' => 'image', 'type' => 'file', 'col' => 'col-md-12'],
                     ['label' => 'tamaño en mls', 'name' => 'size', 'type' => 'number', 'col' => 'col-md-6'],
-                    ['label' => 'concentración', 'name' => 'concentration', 'type' => 'text', 'col' => 'col-md-6'],
+                    ['label' => 'imagen', 'name' => 'image', 'type' => 'file', 'col' => 'col-md-12'],
                 ];
                 generateForm('', $inputs, 'Añadir Perfume', 'Añadir');
                 //Footer

@@ -1,43 +1,57 @@
 <?php
 require_once '../config.php';
 
+$keyBFilter = $_GET['keyB'] ?? '';
 $nameFilter = $_GET['name'] ?? '';
-$brandFilter = $_GET['brand'] ?? '';
+$houseFilter = $_GET['house'] ?? '';
+$familyOFilter = $_GET['familyO'] ?? '';
 $genderFilter = $_GET['gender'] ?? '';
-$minPrice = $_GET['min_price'] ?? '';
-$maxPrice = $_GET['max_price'] ?? '';
+$sizeFilter = $_GET['size'] ?? '';
 
 $sql = "SELECT * FROM perfumes WHERE 1=1";
 
 // filtros si se aplican
+if (!empty($keyBFilter)) {
+    $sql .= " AND clave_bouquet LIKE '%" . $con->real_escape_string($keyBFilter) . "%'";
+}
 if (!empty($nameFilter)) {
     $sql .= " AND nombre LIKE '%" . $con->real_escape_string($nameFilter) . "%'";
 }
-if (!empty($brandFilter)) {
-    $sql .= " AND marca LIKE '%" . $con->real_escape_string($brandFilter) . "%'";
+if (!empty($houseFilter)) {
+    $sql .= " AND casa LIKE '%" . $con->real_escape_string($houseFilter) . "%'";
+}
+if (!empty($familyOFilter)) {
+    $sql .= " AND familia_olfativa LIKE '%" . $con->real_escape_string($familyOFilter) . "%'";
 }
 if (!empty($genderFilter)) {
     $sql .= " AND genero = '" . $con->real_escape_string($genderFilter) . "'";
 }
-if (!empty($minPrice)) {
-    $sql .= " AND precio >= " . (float)$minPrice;
-}
-if (!empty($maxPrice)) {
-    $sql .= " AND precio <= " . (float)$maxPrice;
+if (!empty($sizeFilter)) {
+    $sql .= " AND cantidad = '" . $con->real_escape_string($sizeFilter) . "'";
 }
 
-$sql .= " ORDER BY id DESC";
+$sql .= " ORDER BY id_perfume DESC";
 
 $result = $con->query($sql);
+if (!$result) {
+    die("Error en la consulta: " . $con->error);
+}
+
 ?>
 <div class="filter-container">
     <form method="GET">
         <div class="row g-2 mb-4">
+            <div class="col-md-1">
+                <input type="text" id="keyB" name="keyB" class="form-control" placeholder="Clave " value="<?= htmlspecialchars($keyBFilter) ?>">
+            </div>
             <div class="col-md-2">
                 <input type="text" id="name" name="name" class="form-control" placeholder="Nombre" value="<?= htmlspecialchars($nameFilter) ?>">
             </div>
+            <div class="col-md-1">
+                <input type="text" id="house" name="house" class="form-control" placeholder="Casa" value="<?= htmlspecialchars($houseFilter) ?>">
+            </div>
             <div class="col-md-2">
-                <input type="text" id="brand" name="brand" class="form-control" placeholder="Marca" value="<?= htmlspecialchars($brandFilter) ?>">
+                <input type="text" id="familyO" name="familyO" class="form-control" placeholder="Familia Olfativa" value="<?= htmlspecialchars($familyOFilter) ?>">
             </div>
             <div class="col-md-2">
                 <select id="gender" name="gender" class="form-select">
@@ -48,10 +62,7 @@ $result = $con->query($sql);
                 </select>
             </div>
             <div class="col-md-2">
-                <input type="number" step="0.01" id="min_price" name="min_price" class="form-control" placeholder="Min. $" value="<?= htmlspecialchars($minPrice) ?>">
-            </div>
-            <div class="col-md-2">
-                <input type="number" step="0.01" id="max_price" name="max_price" class="form-control" placeholder="Max. $" value="<?= htmlspecialchars($maxPrice) ?>">
+                <input type="number" id="size" name="size" class="form-control" placeholder="Cantidad" value="<?= htmlspecialchars($size) ?>">
             </div>
             <div class="col-md-2 text-start">
                 <button type="submit" class="btn btn-primary btn-lr">Filtrar</button>
@@ -64,30 +75,29 @@ $result = $con->query($sql);
     <?php
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $id = htmlspecialchars($row['id']);
+            $id = htmlspecialchars($row['id_perfume']);
             $image = htmlspecialchars($row['imagen']);
+            $keyB = htmlspecialchars($row['clave_bouquet']);
             $name = htmlspecialchars($row['nombre']);
-            $brand = htmlspecialchars($row['marca']);
+            $house = htmlspecialchars($row['casa']);
+            $familyO = htmlspecialchars($row['familia_olfativa']);
             $gender = htmlspecialchars($row['genero']);
-            $price = number_format($row['precio'], 2);
-            $size = htmlspecialchars($row['tamano']);
-            $concentration = htmlspecialchars($row['concentracion']);
+            $size = htmlspecialchars($row['cantidad']);
 
             echo "
             <div class='col-lg-4 col-md-6 mb-4'>
                 <a href='". VIEWS . "perfume_detail.php?id=$id'>
                 <div class='card shadow-sm'>
                     <div class='bg-white flex center'>
-                        <img class='card-img-top img-fluid w-50 m-2' src='" . PUB . "uploads/perfumes/" . $image ."' alt='$name'  '>
+                        <img class='card-img-top  w-50 m-2' src='" . PUB . "uploads/perfumes/" . $image ."' alt='$name'  '>
                     </div>
                     <div class='card-body'>
                         <h4 class='card-title'>$name</h4>
                         <p class='card-text'>
-                            <strong>Marca:</strong> $brand<br>
+                            <strong>Casa:</strong> $house<br>
+                            <strong>Clave Bouquet:</strong> $keyB<br>
                             <strong>Género:</strong> $gender<br>
-                            <strong>Tamaño:</strong> $size ml<br>
-                            <strong>Concentración:</strong> $concentration<br>
-                            <strong>Precio:</strong> <span class='text-success'>$$price</span>
+                            <strong>Cantidad Disponible:</strong> $size ml<br>
                         </p>
                     </div>
                 </div>
@@ -95,7 +105,7 @@ $result = $con->query($sql);
             </div>";
         }
     } else {
-        echo "<p>No se encontraron perfumes que coincidan con los filtros.</p>";
+        echo "<p>No se encontraron fragancias que coincidan con los filtros.</p>";
     }
     ?>
 </div>

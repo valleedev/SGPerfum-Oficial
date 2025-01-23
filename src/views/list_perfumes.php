@@ -27,7 +27,7 @@ if ($result->num_rows == 1) {
 
 <head>
     <meta charset="utf-8" />
-    <title>Dashboard | SGPERFUM</title>
+    <title>Inventario | SGPERFUM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Administrador de perfumeria" name="description" />
     <meta content="Sebastian Valle" name="author" />
@@ -53,9 +53,9 @@ if ($result->num_rows == 1) {
         
             <?php 
                 include '../components/header.php' ;
-                $title = 'Listado de Perfumes';
-                $page = 'Catálogo perfumes';
-                $extraPage = 'Gestion de perfumes';
+                $title = 'Inventario de fragancias';
+                $page = 'Inventario fragancias';
+                $extraPage = 'Gestion de fragancias';
                 include '../components/starter.php';
                 ?>
                 <div class="row p-3 flex">

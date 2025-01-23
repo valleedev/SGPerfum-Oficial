@@ -17,17 +17,19 @@ try {
                 'message' => 'ID de perfume inválido o no proporcionado.',
             ]);
             exit;
-        }
+        } 
+
+
 
         // Validar y sanitizar los valores
         $name = trim($_POST["name"] ?? '');
-        $brand = trim($_POST["brand"] ?? '');
+        $house = trim($_POST["house"] ?? '');
         $gender = trim($_POST["gender"] ?? '');
-        $price = (double)($_POST["price"] ?? 0);
+        $familyO = trim($_POST["familyO"] ?? '');
         $size = (int)($_POST["size"] ?? 0);
-        $concentration = trim($_POST["concentration"] ?? '');
+        $keyB = (int)($_POST["keyB"] ?? 0);
 
-        if (!$name || !$brand || !$gender || !$concentration || $price <= 0 || $size <= 0) {
+        if (!$name || !$house || !$gender || !$familyO || $size <= 0 || $keyB <= 0) {
             echo json_encode([
                 'success' => false,
                 'message' => 'Datos faltantes o inválidos.',
@@ -37,15 +39,15 @@ try {
 
         // Consulta de actualización
         $sql = "UPDATE perfumes SET 
-                    nombre = ?, marca = ?, genero = ?, precio = ?, tamano = ?, concentracion = ? 
-                WHERE id = ?";
+                    clave_bouquet = ?, nombre = ?, casa = ?, familia_olfativa = ?, genero = ?, cantidad = ?
+                WHERE id_perfume = ?";
         $stmt = $con->prepare($sql);
 
         if (!$stmt) {
             throw new Exception("Error al preparar la consulta: " . $con->error);
         }
 
-        $stmt->bind_param("sssdisi", $name, $brand, $gender, $price, $size, $concentration, $perfume_id);
+        $stmt->bind_param("issssi", $keyB, $name, $house, $familyO, $gender, $size, $perfume_id);
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
@@ -63,7 +65,10 @@ try {
         $stmt->close();
     } else {
         throw new Exception("Método no permitido.");
-    }
+    };
+
+
+    
 } catch (Exception $e) {
     echo json_encode([
         'success' => false,

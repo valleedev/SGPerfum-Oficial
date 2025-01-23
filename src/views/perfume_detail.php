@@ -22,23 +22,23 @@ if ($result->num_rows == 1) {
 }
 
 // Obtener el id del perfume desde la URL
-$perfume_id = $_GET['id'] ?? null;
+$perfume_id = $_GET['id'] ?? null; 
  
 if ($perfume_id) {
-    $sql = "SELECT * FROM perfumes WHERE id = " . $con->real_escape_string($perfume_id);
+    $sql = "SELECT * FROM perfumes WHERE id_perfume = " . $con->real_escape_string($perfume_id);
     $result = $con->query($sql);
 
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
+        $keyB = htmlspecialchars($row['clave_bouquet']);
         $name = htmlspecialchars($row['nombre']);
-        $brand = htmlspecialchars($row['marca']);
+        $house = htmlspecialchars($row['casa']);
+        $familyO = htmlspecialchars($row['familia_olfativa']);
         $gender = htmlspecialchars($row['genero']);
-        $price = number_format($row['precio'], 2);
-        $size = htmlspecialchars($row['tamano']);
-        $concentration = htmlspecialchars($row['concentracion']);
+        $size = htmlspecialchars($row['cantidad']);
         $image = htmlspecialchars($row['imagen']);
     } else {
-        echo "No se encontró el perfume.";
+        echo "No se encontró la fragancia.";
     }
 } else {
     echo "ID de perfume no especificado.";
@@ -51,7 +51,7 @@ $con->close();
 
 <head>
     <meta charset="utf-8" />
-    <title>Dashboard | SGPERFUM</title>
+    <title>Detalles Fragancia | SGPERFUM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Administrador de perfumeria" name="description" />
     <meta content="Sebastian Valle" name="author" />
@@ -76,9 +76,9 @@ $con->close();
         <div class="page-content">
             <?php 
                 include '../components/header.php' ;
-                $title = 'Detalles del Perfume';
-                $page = 'Detalles Perfume';
-                $extraPage = 'Catálogo de Perfumes';
+                $title = 'Detalles de la fragancia';
+                $page = 'Detalles fragancia';
+                $extraPage = 'Inventario de Fragancias';
                 $link = '../views/list_perfumes.php';
                 include '../components/starter.php';
                 ?>
@@ -100,7 +100,7 @@ $con->close();
                             <i class="bx bx-check-double h1 text-white"></i>
                             <h4 class="mt-2 text-white">Perfume actualizado correctamente!</h4>
                             <p class="mt-3 text-white">El perfume se ha actualizado en la base de datos exitosamente</p>
-                            <button type="button" class="btn btn-light my-2" data-bs-dismiss="modal">Aceptar</button>
+                            <button type="button" class="btn btn-light my-2 boton" data-bs-dismiss="modal">Aceptar</button>
                         </div>
                     </div>
                 </div>
