@@ -23,6 +23,12 @@ if ($result->num_rows == 1) {
 
 // Obtener el id del perfume desde la URL
 $perfume_id = $_GET['id'] ?? null; 
+
+if (empty($perfume_id)) {
+    echo "ID de perfume no especificado.";
+    exit;
+}
+
  
 if ($perfume_id) {
     $sql = "SELECT * FROM perfumes WHERE id_perfume = " . $con->real_escape_string($perfume_id);
@@ -60,6 +66,7 @@ $con->close();
     <link rel="shortcut icon" href="<?= ASSETS ?>images/favicon.ico">
 
     <link href="<?= ASSETS ?>libs/morris.js/morris.css" rel="stylesheet" type="text/css" />
+    <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
 
     <!-- App css -->
     <link href="<?= ASSETS ?>css/style.min.css" rel="stylesheet" type="text/css">
@@ -154,6 +161,8 @@ $con->close();
                 if (data.success) {
                     const modal = new bootstrap.Modal(document.getElementById("success-alert-modal"));
                     modal.show();
+
+
                     editMode.classList.add('d-none');
                     viewMode.classList.remove('d-none');
                 } else {

@@ -97,7 +97,7 @@ if (!$result) {
                             <strong>Casa:</strong> $house<br>
                             <strong>Clave Bouquet:</strong> $keyB<br>
                             <strong>Género:</strong> $gender<br>
-                            <strong>Cantidad Disponible:</strong> $size ml<br>
+                            <strong>Gramos Disponible:</strong> $size gr<br>
                         </p>
                     </div>
                 </div>

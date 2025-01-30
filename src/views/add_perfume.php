@@ -60,12 +60,12 @@ if ($result->num_rows == 1) {
                 // Formulario
                 include '../components/form.php' ;
                 $inputs = [
-                    ['label' => 'Clave Bouquet', 'name' => 'keyB', 'type' => 'number', 'col' => 'col-md-2'],
+                    ['label' => 'Código', 'name' => 'keyB', 'type' => 'number', 'col' => 'col-md-2'],
                     ['label' => 'Nombre', 'name' => 'name', 'type' => 'text', 'col' => 'col-md-10'],
                     ['label' => 'Casa', 'name' => 'house', 'type' => 'text', 'col' => 'col-md-6'],
                     ['label' => 'Familia Olfativa', 'name' => 'familyO', 'type' => 'text', 'col' => 'col-md-6'], 
                     ['label' => 'Genero', 'name' => 'gender', 'type' => 'select', 'col' => 'col-md-6', 'options' => ['Masculino', 'Femenino', 'Unisex']],
-                    ['label' => 'tamaño en mls', 'name' => 'size', 'type' => 'number', 'col' => 'col-md-6'],
+                    ['label' => 'Gramos', 'name' => 'size', 'type' => 'number', 'col' => 'col-md-6'],
                     ['label' => 'imagen', 'name' => 'image', 'type' => 'file', 'col' => 'col-md-12'],
                 ];
                 generateForm('', $inputs, 'Añadir Perfume', 'Añadir');

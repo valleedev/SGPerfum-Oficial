@@ -14,7 +14,7 @@ try {
             $familyO = mysqli_real_escape_string($con, $_POST["familyO"]);
             $gender = mysqli_real_escape_string($con, $_POST["gender"]);
             $size = (int)$_POST["size"];
-
+ 
             $targetDir = "../../../public/uploads/perfumes/";
             if (!is_dir($targetDir)) {
                 if (!mkdir($targetDir, 0777, true)) {

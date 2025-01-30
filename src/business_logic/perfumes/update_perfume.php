@@ -17,9 +17,7 @@ try {
                 'message' => 'ID de perfume inválido o no proporcionado.',
             ]);
             exit;
-        } 
-
-
+        }
 
         // Validar y sanitizar los valores
         $name = trim($_POST["name"] ?? '');
@@ -28,6 +26,13 @@ try {
         $familyO = trim($_POST["familyO"] ?? '');
         $size = (int)($_POST["size"] ?? 0);
         $keyB = (int)($_POST["keyB"] ?? 0);
+
+        $targetDir = "../../../public/uploads/perfumes/";
+        if (!is_dir($targetDir)) {
+            if (!mkdir($targetDir, 0777, true)) {
+                die("Error al crear el directorio: " . $targetDir);
+            }
+        }
 
         if (!$name || !$house || !$gender || !$familyO || $size <= 0 || $keyB <= 0) {
             echo json_encode([
@@ -47,31 +52,42 @@ try {
             throw new Exception("Error al preparar la consulta: " . $con->error);
         }
 
-        $stmt->bind_param("issssi", $keyB, $name, $house, $familyO, $gender, $size, $perfume_id);
+        $stmt->bind_param("issssii", $keyB, $name, $house, $familyO, $gender, $size, $perfume_id);
         $stmt->execute();
 
-        if ($stmt->affected_rows > 0) {
-            echo json_encode([
-                'success' => true,
-                'message' => 'Perfume actualizado correctamente.',
-            ]);
-        } else {
-            echo json_encode([
-                'success' => false,
-                'message' => 'No se realizaron cambios en el perfume.',
-            ]);
+        $response = [
+            'success' => true,
+            'message' => 'Perfume actualizado correctamente.',
+        ];
+
+        if ($stmt->affected_rows === 0) {
+            $response['message'] = 'No se realizaron cambios en el perfume.';
         }
 
         $stmt->close();
+        /* // No he podido con el error que se genera en esta parte 
+        // Subir imagen
+        try {
+            include 'upload_images.php';
+            $imageUpdateMessage = json_decode(updateImage('perfumes', 'imagen', 'id_perfume', $perfume_id, $_FILES['image']));
+            $response['image_message'] = $imageUpdateMessage;
+        } catch (Exception $e) {
+            $response['success'] = false;
+            $response['message'] = 'Error al actualizar la imagen: ' . $e->getMessage();
+        }
+*/
+        echo json_encode($response);
+
     } else {
         throw new Exception("Método no permitido.");
-    };
+    }
 
-
-    
 } catch (Exception $e) {
+    // Registrar el error en un archivo de registro
+    error_log("Error: " . $e->getMessage() . "\n", 3, 'errors.log');
     echo json_encode([
         'success' => false,
-        'message' => 'Error: ' . $e->getMessage(),
+        'message' => 'Error interno del servidor: ' . $e->getMessage(),
     ]);
+    exit;
 }

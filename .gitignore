@@ -3,3 +3,4 @@ composer.json
 composer.lock
 /vendor/
 /public/uploads/perfumes/
+/public/src/bisuness_logic/perfumes/errors.log
