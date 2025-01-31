@@ -69,10 +69,7 @@
                             <!-- Aquí comienza la sección de eliminación, oculta inicialmente -->
                             <div id="delete-section" class="mt-3" style="display: none;">
                                 <p class="text-danger">¡Advertencia! Esta acción eliminará la fragancia de manera permanente.</p>
-                                <!-- Botón de eliminación dentro del formulario -->
-                                <form action="../business_logic/perfumes/delete_perfume.php" method="post">
-                                    <input type="hidden" name="id" value="<?php echo $perfume_id; ?>">
-                                </form>
+                               
                                 <button  type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#warning-alert-modal">Eliminar</button>
                             </div>
                         </form>
@@ -93,7 +90,7 @@
                         <i class="bx bxs-no-entry h1 text-warning"></i>
                         <h4 class="mt-2">Esto es una zona de riesgo</h4>
                         <p class="mt-3">Si usted esta completamente seguro que desea eliminar la fragancia de click en aceptar, de lo contrario haga click fuera del modal.</p>
-                        <form action="../business_logic/perfumes/delete_perfume.php" method="post">
+                        <form id="delete-form" action="../business_logic/perfumes/delete_perfume.php" method="post">
                             <input type="hidden" name="id" value="<?php echo $perfume_id; ?>">
                             <button type="submit" class="btn btn-warning my-2" data-bs-dismiss="modal">Aceptar</button>
                         </form>

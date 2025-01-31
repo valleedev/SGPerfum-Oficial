@@ -95,7 +95,7 @@ if (!$result) {
                         <h4 class='card-title'>$name</h4>
                         <p class='card-text'>
                             <strong>Casa:</strong> $house<br>
-                            <strong>Clave Bouquet:</strong> $keyB<br>
+                            <strong>Código:</strong> $keyB<br>
                             <strong>Género:</strong> $gender<br>
                             <strong>Gramos Disponible:</strong> $size gr<br>
                         </p>

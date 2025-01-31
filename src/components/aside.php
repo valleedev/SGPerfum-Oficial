@@ -32,7 +32,7 @@
 
                     <li class="menu-item">
                         <a href="#menuExpages" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
-                            <span class="menu-icon"><i class="bx bxl-product-hunt"></i></span>
+                            <span class="menu-icon"><i class='bx bx-spa'></i></i></span>
                             <span class="menu-text"> Gestion de fragancias </span>
                             <span class="menu-arrow"></span>
                         </a>

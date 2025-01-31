@@ -122,7 +122,7 @@ $con->close();
                             <i class="bx bx-aperture h1 text-white"></i>
                             <h4 class="mt-2 text-white">Oh No!</h4>
                             <p class="mt-3 text-white">Algo ha salido mal al actualizar el perfume vuelve a intentarlo.</p>
-                            <button type="button" class="btn btn-light my-2" data-bs-dismiss="modal">Aceptar</button>
+                            <button type="button"  class="btn btn-light my-2" data-bs-dismiss="modal">Aceptar</button>
                         </div>
                     </div>
                 </div>
@@ -146,7 +146,7 @@ $con->close();
     <!-- Dashboard init-->
     <script src="../../public/assets/js/pages/dashboard.js"></script>
     <script> 
-       document.getElementById("form").addEventListener("submit", function (event) {
+        document.getElementById("form").addEventListener("submit", function (event) {
         event.preventDefault();
 
         const formData = new FormData(this);
@@ -176,6 +176,7 @@ $con->close();
             });
     });
 
+    
     </script>
 </body>
 
