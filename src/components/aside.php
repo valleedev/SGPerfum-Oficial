@@ -29,7 +29,12 @@
 
                     <li class="menu-title">NAVEGACIÓN</li>
 
-
+                    <li class="menu-item">
+                        <a href="<?= VIEWS ?>sales.php" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class='bx bx-money-withdraw'></i></span>
+                            <span class="menu-text"> Ventas </span>
+                        </a>
+                    </li>
                     <li class="menu-item">
                         <a href="#menuExpages" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
                             <span class="menu-icon"><i class='bx bx-spa'></i></i></span>
@@ -51,46 +56,11 @@
                             </ul>
                         </div>
                     </li>
-
-                    
                     <li class="menu-item">
-                        <a href="apps-calendar.html" class="menu-link waves-effect waves-light">
-                            <span class="menu-icon"><i class="bx bxs-user-account"></i></span>
-                            <span class="menu-text"> Clientes </span>
+                        <a href="<?= VIEWS ?>users.php" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class='bx bx-user'></i></span>
+                            <span class="menu-text"> Usuarios </span>
                         </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="#menuLayouts" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
-                            <span class="menu-icon"><i class="bx bx-layout"></i></span>
-                            <span class="menu-text"> Existencias </span>
-                        </a>
-                        <div class="collapse" id="menuLayouts">
-                            <ul class="sub-menu">
-                                <li class="menu-item">
-                                    <a href="layout-horizontal.html" class="menu-link">
-                                        <span class="menu-text">Horizontal</span>
-                                    </a>
-                                </li>
-
-                                <li class="menu-item">
-                                    <a href="layout-sidenav-light.html" class="menu-link">
-                                        <span class="menu-text">Sidenav Light</span>
-                                    </a>
-                                </li>
-
-                                <li class="menu-item">
-                                    <a href="layout-sidenav-dark.html" class="menu-link">
-                                        <span class="menu-text">Sidenav Dark</span>
-                                    </a>
-                                </li>
-
-                                <li class="menu-item">
-                                    <a href="layout-topbar-dark.html" class="menu-link">
-                                        <span class="menu-text">Topbar Dark</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                     </li>
                 </ul>
             </div>
