@@ -27,7 +27,7 @@ if ($result->num_rows == 1) {
 
 <head>
     <meta charset="utf-8" />
-    <title>Dashboard | Dashtrap - Responsive Bootstrap 5 Admin Dashboard</title>
+    <title>Ventas | Dashtrap - Responsive Bootstrap 5 Admin Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Myra Studio" name="author" />
@@ -56,11 +56,7 @@ if ($result->num_rows == 1) {
                 $page = 'Vender fragancia';
                 $extraPage = 'Ventas';
                 include '../components/starter.php';
-                // Formulario
-                include '../components/form.php' ;
-                $inputs = [
-                ];
-                generateForm('', $inputs, 'Registrar venta', 'Añadir');
+                include '../components/sales_form.php';
                 //Footer
                 include '../components/footer.php' 
             ?>
