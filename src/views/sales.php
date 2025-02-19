@@ -8,7 +8,7 @@ if (!isset($_SESSION['usuario_id'])) {
 }
 
 $usuario_id = $_SESSION['usuario_id']; 
-$sql = "SELECT * FROM usuarios WHERE id = ?";
+$sql = "SELECT * FROM usuarios WHERE id_usuario = ?";
 $stmt = $con->prepare($sql);
 $stmt->bind_param("i", $usuario_id);
 $stmt->execute();
@@ -27,7 +27,7 @@ if ($result->num_rows == 1) {
 
 <head>
     <meta charset="utf-8" />
-    <title>Ventas | Dashtrap - Responsive Bootstrap 5 Admin Dashboard</title>
+    <title>Ventas | SGPERFUM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Myra Studio" name="author" />

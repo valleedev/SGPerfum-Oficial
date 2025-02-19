@@ -9,7 +9,7 @@ try {
         
     
         // Consulta para verificar credenciales
-        $sql = "SELECT * FROM usuarios WHERE email = ? AND contraseña = ?";
+        $sql = "SELECT * FROM usuarios WHERE email = ? AND contrasena = ?";
         $stmt = $con->prepare($sql);
         $stmt->bind_param("ss", $correo, $contrasena);
         $stmt->execute();
@@ -17,7 +17,7 @@ try {
     
         if ($result->num_rows == 1) {
             $usuario = $result->fetch_assoc();
-            $_SESSION['usuario_id'] = $usuario['id'];
+            $_SESSION['usuario_id'] = $usuario['id_usuario'];
             echo json_encode(["success" => true]);
             exit;
         } else {

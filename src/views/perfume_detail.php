@@ -8,7 +8,7 @@ if (!isset($_SESSION['usuario_id'])) {
 }
 
 $usuario_id = $_SESSION['usuario_id']; 
-$sql = "SELECT * FROM usuarios WHERE id = ?";
+$sql = "SELECT * FROM usuarios WHERE id_usuario = ?";
 $stmt = $con->prepare($sql);
 $stmt->bind_param("i", $usuario_id);
 $stmt->execute();
