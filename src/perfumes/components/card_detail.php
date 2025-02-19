@@ -90,7 +90,7 @@
                         <i class="bx bxs-no-entry h1 text-warning"></i>
                         <h4 class="mt-2">Esto es una zona de riesgo</h4>
                         <p class="mt-3">Si usted esta completamente seguro que desea eliminar la fragancia de click en aceptar, de lo contrario haga click fuera del modal.</p>
-                        <form id="delete-form" action="../business_logic/perfumes/delete_perfume.php" method="post">
+                        <form id="delete-form" action="../business_logic/delete_perfume.php" method="post">
                             <input type="hidden" name="id" value="<?php echo $perfume_id; ?>">
                             <button type="submit" class="btn btn-warning my-2" data-bs-dismiss="modal">Aceptar</button>
                         </form>

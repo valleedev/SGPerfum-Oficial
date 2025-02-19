@@ -15,7 +15,7 @@ try {
             $stmt->bind_param("i", $perfume_id);
             
             if ($stmt->execute()) {
-                echo "<script>alert('Perfume eliminado correctamente.'); window.location.href='../../views/list_perfumes.php';</script>";
+                echo "<script>alert('Perfume eliminado correctamente.'); window.location.href='../views/list_perfumes.php';</script>";
             } else {
                 echo "<script>alert('No se pudo eliminar el perfume.'); window.location.href=document.referrer;</script>";
             }

@@ -33,7 +33,7 @@ function searchFragancia() {
     return;
   }
 
-  let url = '../business_logic/perfumes/search_perfume.php';
+  let url = '../business_logic/search_perfume.php';
   if (clave) {
     url += `?clave=${encodeURIComponent(clave)}`;
   } else if (nombre) {
@@ -92,7 +92,7 @@ function updateSaleDetails() {
         <div class="row align-items-end">
           <!-- Imagen de la fragancia -->
           <div class="col-md-2">
-            <img src="../../public/uploads/perfumes/${fragancia.imagen ? fragancia.imagen : 'placeholder.jpg'}" alt="${fragancia.nombre}" class="img-thumbnail" style="max-width: 100px;">
+            <img src="../../../public/uploads/perfumes/${fragancia.imagen ? fragancia.imagen : 'placeholder.jpg'}" alt="${fragancia.nombre}" class="img-thumbnail" style="max-width: 100px;">
           </div>
           <!-- Muestra nombre y código -->
           <div class="col-md-3">
@@ -152,7 +152,7 @@ function updateSubtotal(clave) {
       const envaseSize = selectEnvase.value;
       const basePrice = basePrices[envaseSize] || 0;
       const additionalGrams = parseFloat(inputGramos.value) || 0;
-      const pricePerGram = 1500; // Precio por gramo adicional
+      const pricePerGram = precio_gramo; // Precio por gramo adicional
 
       const subtotal = basePrice + (additionalGrams * pricePerGram);
       subtotalField.value = subtotal.toFixed(2);
@@ -222,7 +222,7 @@ document.getElementById('saleForm').addEventListener('submit', function(e) {
   
   const saleData = document.getElementById("sale_data").value;
   
-  fetch('../business_logic/perfumes/process_sale.php', {
+  fetch('../business_logic/process_sale.php', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

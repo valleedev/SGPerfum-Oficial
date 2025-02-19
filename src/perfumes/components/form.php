@@ -4,7 +4,7 @@ function generateForm($action, $inputs, $titleForm, $valueButton) {
         <div class="card">
             <div class="card-body">
                 <h4 class="header-title mb-4">' . htmlspecialchars($titleForm) . '</h4>
-                <form action="' . SRC . "business_logic/" . htmlspecialchars($action) . '" method="post" id="form" enctype="multipart/form-data">
+                <form action="' . "../business_logic/" . htmlspecialchars($action) . '" method="post" id="form" enctype="multipart/form-data">
                 <div class="row">';
 
     foreach ($inputs as $input) {

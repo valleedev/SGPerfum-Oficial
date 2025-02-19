@@ -1,8 +1,18 @@
 <?php
-require_once '../config.php';
+require_once '../../config.php';
+
+$id_gramo = 1;
+$sql = $con->prepare("SELECT precio FROM gramos_adicionales WHERE id_gramo = ?");
+$sql->bind_param("i", $id_gramo);
+$sql->execute();
+$sql->bind_result($precio_gramo);
+$sql->fetch();
+$sql->close();
+
+echo "<script>let precio_gramo = '$precio_gramo';</script>"
 ?>
 <div class="container my-3">
-  <form id="saleForm" method="POST" action="../business_logic/perfumes/process_sale.php">
+  <form id="saleForm" method="POST" action="../business_logic/process_sale.php">
     <div class="card">
       <div class="card-body">
         <!-- 1. Sección de Búsqueda de fragancia -->

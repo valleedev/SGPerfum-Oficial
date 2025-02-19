@@ -1,6 +1,6 @@
 <?php
 
-include '../config.php'; 
+include '../../config.php'; 
 
 header('Content-Type: application/json'); // Asegura que la salida sea JSON
 
@@ -30,7 +30,7 @@ function uploadImage($table, $column, $idColumn, $id, $image) {
         return;
     }
 
-    $targetDir = "../../../public/uploads/$table/";
+    $targetDir = PUB . "uploads/$table/";
     if (!is_dir($targetDir)) {
         mkdir($targetDir, 0777, true);
     }
@@ -81,13 +81,13 @@ function updateImage($table, $column, $idColumn, $id, $image) {
     $stmt->close();
 
     if ($currentImage) {
-        $currentImagePath = "../../../public/uploads/$table/$currentImage";
+        $currentImagePath = PUB . "uploads/$table/$currentImage";
         if (file_exists($currentImagePath)) {
             unlink($currentImagePath);
         }
     }
 
-    $targetDir = "../../../public/uploads/$table/";
+    $targetDir = PUB . "uploads/$table/";
     if (!is_dir($targetDir)) {
         mkdir($targetDir, 0777, true);
     }

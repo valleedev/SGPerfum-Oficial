@@ -21,7 +21,7 @@
                     <li class="menu-title">MENU</li>
 
                     <li class="menu-item">
-                        <a href="<?= VIEWS ?>dashboard.php" class="menu-link waves-effect waves-light">
+                        <a href="<?= DASH_VIEWS ?>dashboard.php" class="menu-link waves-effect waves-light">
                             <span class="menu-icon"><i class="bx bx-home-smile"></i></span>
                             <span class="menu-text"> Dashboards </span>
                         </a>
@@ -44,12 +44,12 @@
                         <div class="collapse" id="menuExpages">
                             <ul class="sub-menu">
                                 <li class="menu-item">
-                                    <a href="<?= VIEWS ?>add_perfume.php" class="menu-link">
+                                    <a href="<?= PERF_VIEWS ?>add_perfume.php" class="menu-link">
                                         <span class="menu-text">Añadir una nueva fragancia</span>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="<?= VIEWS ?>list_perfumes.php" class="menu-link">
+                                    <a href="<?= PERF_VIEWS ?>list_perfumes.php" class="menu-link">
                                         <span class="menu-text">Inventario de fragancias</span>
                                     </a>
                                 </li>

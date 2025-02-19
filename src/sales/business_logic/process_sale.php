@@ -8,7 +8,7 @@ if (!isset($_SESSION['usuario_id'])) {
     echo json_encode(['success' => false, 'message' => 'No autorizado']);
     exit;
 }
-
+//--------------DATOS USUARIOS-----------------------------------
 $usuario_id = $_SESSION['usuario_id'];
 $sql = "SELECT * FROM usuarios WHERE id_usuario = ?";
 $stmt = $con->prepare($sql);

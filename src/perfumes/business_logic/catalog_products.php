@@ -1,5 +1,5 @@
 <?php
-require_once '../config.php';
+require_once '../../config.php';
 
 $keyBFilter = $_GET['keyB'] ?? '';
 $nameFilter = $_GET['name'] ?? '';
@@ -86,7 +86,7 @@ if (!$result) {
 
             echo "
             <div class='col-lg-4 col-md-6 mb-4'>
-                <a href='". VIEWS . "perfume_detail.php?id=$id'>
+                <a href='". PERF_VIEWS . "perfume_detail.php?id=$id'>
                 <div class='card shadow-sm'>
                     <div class='bg-white flex center'>
                         <img class='card-img-top  w-50 m-2' src='" . PUB . "uploads/perfumes/" . $image ."' alt='$name'  '>

@@ -15,7 +15,7 @@ try {
             $gender = mysqli_real_escape_string($con, $_POST["gender"]);
             $size = (int)$_POST["size"];
  
-            $targetDir = "../../../public/uploads/perfumes/";
+            $targetDir = "". PUB . "uploads/perfumes/";
             if (!is_dir($targetDir)) {
                 if (!mkdir($targetDir, 0777, true)) {
                     die("Error al crear el directorio: " . $targetDir);
