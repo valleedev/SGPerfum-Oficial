@@ -50,8 +50,16 @@ if ($result->num_rows == 1) {
         <?php include '../../global_components/aside.php' ?>
         
         <div class="page-content">
-            <?php include "../../global_components/header.php" ?>
-            <?php include '../../global_components/footer.php' ?>
+            <?php include "../../global_components/header.php";
+                $title = 'Dashboard';
+                $page = 'Dashboard';
+                $extraPage = 'SGPERFUM';
+                include '../../global_components/starter.php';
+                include '../business_logic/reportes_logic.php';
+                include '../components/cards_general_report.php';
+                include '../../global_components/footer.php' 
+            ?>
+            
         </div>
     </div>
 
