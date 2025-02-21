@@ -1,4 +1,4 @@
-<?php require '../src/config.php' ?>
+<?php require '../config.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +13,7 @@
 <body class="bg-primary d-flex justify-content-center align-items-center min-vh-100 p-5">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-xl-4 col-md-5">
+            <div class="col-xl-4 col-md-5"> 
                 <div class="card">
                     <div class="card-body p-4">
 
@@ -27,7 +27,7 @@
                             </a>
                         </div>
 
-                        <form action="login_process.php" method="post">
+                        <form id="form"  method="post">
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="emailaddress">Gmail</label>
@@ -66,6 +66,21 @@
 
             </div> <!-- end col -->
         </div>
+        <!--Modal Error-->
+        <div id="danger-alert-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content modal-filled bg-danger">
+                    <div class="modal-body p-4">
+                        <div class="text-center">
+                            <i class="bx bx-aperture h1 text-white"></i>
+                            <h4 class="mt-2 text-white">Oh No!</h4>
+                            <p class="mt-3 text-white">Ingresa los credenciales correctamente para poder ingresar</p>
+                            <button type="button" class="btn btn-light my-2" data-bs-dismiss="modal">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- end row -->
     </div>
 
@@ -73,3 +88,31 @@
     <script src="<?= ASSETS ?>js/app.js"></script>
 </body>
 </html>
+<script>
+        document.getElementById("form").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+
+            var formData = new FormData(this);
+            // Realizamos la solicitud AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "login_process.php", true);
+
+            xhr.onload = function() {
+            if (xhr.status === 200) {
+                const response = JSON.parse(xhr.responseText);
+                if (response.success) {
+                    location = "../dashboard/views/dashboard.php";
+                } else {
+                    var mySecondModal = new bootstrap.Modal(document.getElementById('danger-alert-modal'));
+                    mySecondModal.show();
+                }
+                document.getElementById("form").reset();
+            } else {
+                console.error("Error: " + xhr.status);
+            }
+        };
+
+
+            xhr.send(formData);
+        });
+    </script>

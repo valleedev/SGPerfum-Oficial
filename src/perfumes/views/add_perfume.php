@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../config.php'; 
+include '../../config.php'; 
 
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: login.php");
@@ -8,7 +8,7 @@ if (!isset($_SESSION['usuario_id'])) {
 }
 
 $usuario_id = $_SESSION['usuario_id']; 
-$sql = "SELECT * FROM usuarios WHERE id = ?";
+$sql = "SELECT * FROM usuarios WHERE id_usuario = ?";
 $stmt = $con->prepare($sql);
 $stmt->bind_param("i", $usuario_id);
 $stmt->execute();
@@ -27,13 +27,13 @@ if ($result->num_rows == 1) {
 
 <head>
     <meta charset="utf-8" />
-    <title>Dashboard | SGPERFUM</title>
+    <title>Añadir Fragancias | SGPERFUM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Administrador de perfumeria" name="description" />
     <meta content="Sebastian Valle" name="author" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="<?= ASSETS ?>images/favicon.ico">
+    <link rel="shortcut icon" href="/public/assets/images/favicon.ico">
 
     <link href="<?= ASSETS ?>libs/morris.js/morris.css" rel="stylesheet" type="text/css" />
 
@@ -47,30 +47,30 @@ if ($result->num_rows == 1) {
 
     <!-- Begin page -->
     <div class="layout-wrapper">
-        <?php include '../components/aside.php' ?>
+        <?php include '../../global_components/aside.php' ?>
         
         <div class="page-content">
         
             <?php 
-                include '../components/header.php' ;
-                $title = 'Añadir un perfume nuevo';
-                $page = 'Añadir un nuevo perfume';
+                include '../../global_components/header.php' ;
+                $title = 'Añadir una fragancia nueva';
+                $page = 'Añadir una nueva fragancia';
                 $extraPage = 'Gestion de perfumes';
-                include '../components/starter.php';
+                include '../../global_components/starter.php';
                 // Formulario
                 include '../components/form.php' ;
                 $inputs = [
-                    ['label' => 'Nombre', 'name' => 'name', 'type' => 'text', 'col' => 'col-md-6'],
-                    ['label' => 'Marca', 'name' => 'brand', 'type' => 'text', 'col' => 'col-md-6'],
-                    ['label' => 'Genero', 'name' => 'gender', 'type' => 'select', 'col' => 'col-md-6', 'options' => ['Seleccione una opción', 'Masculino', 'Femenino', 'Unisex']],
-                    ['label' => 'precio', 'name' => 'price', 'type' => 'number', 'col' => 'col-md-6'],
+                    ['label' => 'Código', 'name' => 'keyB', 'type' => 'number', 'col' => 'col-md-2'],
+                    ['label' => 'Nombre', 'name' => 'name', 'type' => 'text', 'col' => 'col-md-10'],
+                    ['label' => 'Casa', 'name' => 'house', 'type' => 'text', 'col' => 'col-md-6'],
+                    ['label' => 'Familia Olfativa', 'name' => 'familyO', 'type' => 'text', 'col' => 'col-md-6'], 
+                    ['label' => 'Genero', 'name' => 'gender', 'type' => 'select', 'col' => 'col-md-6', 'options' => ['Masculino', 'Femenino', 'Unisex']],
+                    ['label' => 'Gramos', 'name' => 'size', 'type' => 'number', 'col' => 'col-md-6'],
                     ['label' => 'imagen', 'name' => 'image', 'type' => 'file', 'col' => 'col-md-12'],
-                    ['label' => 'tamaño en mls', 'name' => 'size', 'type' => 'number', 'col' => 'col-md-6'],
-                    ['label' => 'concentración', 'name' => 'concentration', 'type' => 'text', 'col' => 'col-md-6'],
                 ];
-                generateForm('', $inputs, 'Añadir Perfume', 'Añadir');
+                generateForm('create_perfumes.php', $inputs, 'Añadir Perfume', 'Añadir');
                 //Footer
-                include '../components/footer.php' 
+                include '../../global_components/footer.php' 
             ?>
         </div>
         <!--Modal Success-->
@@ -106,21 +106,21 @@ if ($result->num_rows == 1) {
     </div>
 
     <!-- App js -->
-    <script src="../../public/assets/js/vendor.min.js"></script>
-    <script src="../../public/assets/js/app.js"></script>
+    <script src="../../../public/assets/js/vendor.min.js"></script>
+    <script src="../../../public/assets/js/app.js"></script>
 
     <!-- Knob charts js -->
-    <script src="../../public/assets/libs/jquery-knob/jquery.knob.min.js"></script>
+    <script src="../../../public/assets/libs/jquery-knob/jquery.knob.min.js"></script>
 
     <!-- Sparkline Js-->
-    <script src="../../public/assets/libs/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <script src="../../../public/assets/libs/jquery-sparkline/jquery.sparkline.min.js"></script>
 
-    <script src="../../public/assets/libs/morris.js/morris.min.js"></script>
+    <script src="../../../public/assets/libs/morris.js/morris.min.js"></script>
 
-    <script src="../../public/assets/libs/raphael/raphael.min.js"></script>
+    <script src="../../../public/assets/libs/raphael/raphael.min.js"></script>
 
     <!-- Dashboard init-->
-    <script src="../../public/assets/js/pages/dashboard.js"></script>
+    <script src="../../../public/assets/js/pages/dashboard.js"></script>
     <script>
         document.getElementById("form").addEventListener("submit", function(event) {
             event.preventDefault(); 
@@ -128,7 +128,7 @@ if ($result->num_rows == 1) {
             var formData = new FormData(this);
             // Realizamos la solicitud AJAX
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "<?= SRC ?>business_logic/perfumes/create_perfumes.php", true);
+            xhr.open("POST", "<?= PERF_BL ?>create_perfumes.php", true);
 
             xhr.onload = function() {
                 if (xhr.status === 200) {
@@ -140,7 +140,7 @@ if ($result->num_rows == 1) {
                     mySecondModal.show();
                     document.getElementById("form").reset();
                 }
-            };
+            }; 
 
             xhr.send(formData);
         });

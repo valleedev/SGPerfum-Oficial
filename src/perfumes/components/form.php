@@ -4,7 +4,7 @@ function generateForm($action, $inputs, $titleForm, $valueButton) {
         <div class="card">
             <div class="card-body">
                 <h4 class="header-title mb-4">' . htmlspecialchars($titleForm) . '</h4>
-                <form action="' . SRC . "business_logic/" . htmlspecialchars($action) . '" method="post" id="form" enctype="multipart/form-data">
+                <form action="' . "../business_logic/" . htmlspecialchars($action) . '" method="post" id="form" enctype="multipart/form-data">
                 <div class="row">';
 
     foreach ($inputs as $input) {
@@ -19,13 +19,17 @@ function generateForm($action, $inputs, $titleForm, $valueButton) {
         // por si es de tipo select u otro
         if ($type === 'select') {
             echo '<select class="form-select" id="' . $name . '" name="' . $name . '" required>';
+            
+            echo '<option value="" disabled selected>Seleccione una opción</option>';
             if (isset($input['options']) && is_array($input['options'])) {
                 foreach ($input['options'] as $option) {
                     echo '<option value="' . htmlspecialchars($option) . '">' . htmlspecialchars($option) . '</option>';
                 }
             }
+            
             echo '</select>';
         }
+        
          else {
             echo '<input type="' . $type . '" class="form-control" id="' . $name . '" name="' . $name . '" placeholder="' . $label . '" required>';
         }
