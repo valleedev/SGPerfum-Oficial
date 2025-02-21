@@ -1,4 +1,4 @@
-<?php require '../src/config.php' ?>
+<?php require '../config.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,13 +95,13 @@
             var formData = new FormData(this);
             // Realizamos la solicitud AJAX
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "<?= PUB ?>login_process.php", true);
+            xhr.open("POST", "login_process.php", true);
 
             xhr.onload = function() {
             if (xhr.status === 200) {
                 const response = JSON.parse(xhr.responseText);
                 if (response.success) {
-                    location = "../src/views/dashboard.php";
+                    location = "../dashboard/views/dashboard.php";
                 } else {
                     var mySecondModal = new bootstrap.Modal(document.getElementById('danger-alert-modal'));
                     mySecondModal.show();

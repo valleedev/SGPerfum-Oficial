@@ -30,7 +30,7 @@
                     <li class="menu-title">NAVEGACIÓN</li>
 
                     <li class="menu-item">
-                        <a href="<?= VIEWS ?>sales.php" class="menu-link waves-effect waves-light">
+                        <a href="<?= SALE_VIEWS ?>sales.php" class="menu-link waves-effect waves-light">
                             <span class="menu-icon"><i class='bx bx-money-withdraw'></i></span>
                             <span class="menu-text"> Ventas </span>
                         </a>
@@ -56,8 +56,8 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="menu-item">
-                        <a href="<?= VIEWS ?>users.php" class="menu-link waves-effect waves-light">
+                    <li class="menu-item"> 
+                        <a href="<?= USERS_VIEWS ?>users.php" class="menu-link waves-effect waves-light">
                             <span class="menu-icon"><i class='bx bx-user'></i></span>
                             <span class="menu-text"> Usuarios </span>
                         </a>

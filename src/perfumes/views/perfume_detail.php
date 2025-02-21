@@ -152,7 +152,7 @@ $con->close();
         const formData = new FormData(this);
         const perfumeId = document.getElementById("perfumeId").value;
         formData.append("id", perfumeId);
-        fetch("../business_logic/perfumes/update_perfume.php", {
+        fetch("../business_logic/update_perfume.php", {
             method: "POST",
             body: formData,
         })

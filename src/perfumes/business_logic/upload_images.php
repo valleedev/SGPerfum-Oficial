@@ -6,7 +6,7 @@ header('Content-Type: application/json'); // Asegura que la salida sea JSON
 
 // Función para validar el archivo de imagen
 function validateImage($image) {
-    $allowedFormats = ['image/jpeg', 'image/png'];
+    $allowedFormats = ['image/jpeg', 'image/png', ];
     $maxSize = 2 * 1024 * 1024; // 2MB
 
     if (!in_array($image['type'], $allowedFormats)) {
@@ -30,7 +30,7 @@ function uploadImage($table, $column, $idColumn, $id, $image) {
         return;
     }
 
-    $targetDir = PUB . "uploads/$table/";
+    $targetDir = "../../../public/uploads/$table/";
     if (!is_dir($targetDir)) {
         mkdir($targetDir, 0777, true);
     }

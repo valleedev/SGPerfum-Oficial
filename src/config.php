@@ -14,6 +14,8 @@ define('SRC', '/sgperfum/src/');
 define('DASH_VIEWS', '/sgperfum/src/dashboard/views/');
 define('PERF_BL', '/sgperfum/src/perfumes/business_logic/');
 define('PERF_VIEWS', '/sgperfum/src/perfumes/views/');
+define('SALE_VIEWS', '/sgperfum/src/sales/views/');
+define('USERS_VIEWS', '/sgperfum/src/users/views/');
 define('COMP', '/sgperfum/src/components/');
 define('VIEWS', '/sgperfum/src/views/');
 

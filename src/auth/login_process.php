@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../src/config.php'; 
+include '../config.php'; 
 
 try {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {

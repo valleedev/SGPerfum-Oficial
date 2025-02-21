@@ -8,8 +8,9 @@ $sql->execute();
 $sql->bind_result($precio_gramo);
 $sql->fetch();
 $sql->close();
-
 echo "<script>let precio_gramo = '$precio_gramo';</script>"
+
+
 ?>
 <div class="container my-3">
   <form id="saleForm" method="POST" action="../business_logic/process_sale.php">

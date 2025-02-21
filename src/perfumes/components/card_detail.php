@@ -28,7 +28,7 @@
                     </div>
                     <!-- Modo edición -->
                     <div id="edit-mode" class="d-none">
-                        <form id="form" action="../business_logic/perfumes/update_perfume.php" method="post">
+                        <form id="form" action="../business_logic/update_perfume.php" method="post">
                             <input type="hidden" id="perfumeId" name="id" value="<?php echo $perfume_id; ?>">
 
                             <label for="name-input" class="form-label">Código</label>

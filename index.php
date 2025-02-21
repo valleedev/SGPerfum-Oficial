@@ -308,7 +308,7 @@ footer {
                 <div class="hero-content">
                     <h1>Gestión Inteligente para tu Perfumería</h1>
                     <p>Optimiza tu negocio con SGPerfum, la solución todo en uno para perfumerías</p>
-                        <a href="login.php" class="cta-button">Ingresa a SGPerfum</a>
+                        <a href="src/auth/login.php" class="cta-button">Ingresa a SGPerfum</a>
                 </div>
             </div>
         </section>

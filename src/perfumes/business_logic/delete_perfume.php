@@ -10,6 +10,29 @@ try {
         $perfume_id = $_POST['id'] ?? null;
 
         if ($perfume_id) {
+            // Obtener el nombre del archivo de imagen asociado al perfume
+            $sql = "SELECT imagen FROM perfumes WHERE id_perfume = ?";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("i", $perfume_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $imagen = $row['imagen']; // Nombre del archivo con extensión
+                
+                // Definir la ruta de la imagen (ajústala según la ubicación real de los archivos)
+                $rutaImagen = "../../../public/uploads/perfumes/" . $imagen;
+                
+                // Verificar si la imagen existe y eliminarla
+                if (file_exists($rutaImagen)) {
+                    if (!unlink($rutaImagen)) {
+                        echo "<script>alert('No se pudo eliminar la imagen asociada.');</script>";
+                    }
+                }
+            }
+
+            // Eliminar el registro del perfume de la base de datos
             $sql = "DELETE FROM perfumes WHERE id_perfume = ?";
             $stmt = $con->prepare($sql);
             $stmt->bind_param("i", $perfume_id);

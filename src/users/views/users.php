@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../config.php'; 
+include '../../config.php'; 
 
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: login.php");
@@ -8,7 +8,7 @@ if (!isset($_SESSION['usuario_id'])) {
 }
 
 $usuario_id = $_SESSION['usuario_id']; 
-$sql = "SELECT * FROM usuarios WHERE id = ?";
+$sql = "SELECT * FROM usuarios WHERE id_usuario = ?";
 $stmt = $con->prepare($sql);
 $stmt->bind_param("i", $usuario_id);
 $stmt->execute();
@@ -27,10 +27,10 @@ if ($result->num_rows == 1) {
 
 <head>
     <meta charset="utf-8" />
-    <title>Usuarios | Dashtrap - Responsive Bootstrap 5 Admin Dashboard</title>
+    <title>Usuarios | SGPERFUM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-    <meta content="Myra Studio" name="author" />
+    <meta content="Sebastian Valle" name="author" />
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="<?= ASSETS ?>images/favicon.ico">
@@ -47,37 +47,37 @@ if ($result->num_rows == 1) {
 
     <!-- Begin page -->
     <div class="layout-wrapper">
-        <?php include '../components/aside.php' ?>
+        <?php include '../../global_components/aside.php' ?>
         
         <div class="page-content">
             <?php 
-                include '../components/header.php';
+                include '../../global_components/header.php';
                 $title = 'Usuarios';
                 $page = 'Listado de Usuarios';
                 $extraPage = 'Navegación';
-                include '../components/starter.php';
+                include '../../global_components/starter.php';
                 include '../components/table_users.php';
-                include '../components/footer.php' 
+                include '../../global_components/footer.php' 
             ?>
         </div>
     </div>
 
     <!-- App js -->
-    <script src="../../public/assets/js/vendor.min.js"></script>
-    <script src="../../public/assets/js/app.js"></script>
+    <script src="../../../public/assets/js/vendor.min.js"></script>
+    <script src="../../../public/assets/js/app.js"></script>
 
     <!-- Knob charts js -->
-    <script src="../../public/assets/libs/jquery-knob/jquery.knob.min.js"></script>
+    <script src="../../../public/assets/libs/jquery-knob/jquery.knob.min.js"></script>
 
     <!-- Sparkline Js-->
-    <script src="../../public/assets/libs/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <script src="../../../public/assets/libs/jquery-sparkline/jquery.sparkline.min.js"></script>
 
-    <script src="../../public/assets/libs/morris.js/morris.min.js"></script>
+    <script src="../../../public/assets/libs/morris.js/morris.min.js"></script>
 
-    <script src="../../public/assets/libs/raphael/raphael.min.js"></script>
+    <script src="../../../public/assets/libs/raphael/raphael.min.js"></script>
 
     <!-- Dashboard init-->
-    <script src="../../public/assets/js/pages/dashboard.js"></script>
+    <script src="../../../public/assets/js/pages/dashboard.js"></script>
 
 </body>
 
