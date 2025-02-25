@@ -19,4 +19,18 @@ define('USERS_VIEWS', '/sgperfum/src/users/views/');
 define('COMP', '/sgperfum/src/components/');
 define('VIEWS', '/sgperfum/src/views/');
 
+function obtenerDatosUsuario($con, $usuario_id) {
+    $sql = "SELECT * FROM usuarios WHERE id_usuario = ?";
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("i", $usuario_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows == 1) {
+        return $result->fetch_assoc();
+    } else {
+        return null;
+    }
+}
+ 
 ?>

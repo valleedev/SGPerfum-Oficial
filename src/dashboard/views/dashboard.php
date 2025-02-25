@@ -8,15 +8,8 @@ if (!isset($_SESSION['usuario_id'])) {
 }
 
 $usuario_id = $_SESSION['usuario_id']; 
-$sql = "SELECT * FROM usuarios WHERE id_usuario = ?";
-$stmt = $con->prepare($sql);
-$stmt->bind_param("i", $usuario_id);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows == 1) {
-    $usuario = $result->fetch_assoc(); // Obtener los datos del usuario
-} else {
+$usuario = obtenerDatosUsuario($con, $usuario_id);
+if (!$usuario) {
     echo "Error al obtener los datos del usuario.";
     exit;
 }
@@ -30,7 +23,7 @@ if ($result->num_rows == 1) {
     <title>Dashboard | SGPERFUM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-    <meta content="Sebastian Valle" name="author" />
+    <meta content="J. Sebastian Valle Barbarán" name="author" />
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="<?= ASSETS ?>images/favicon.ico">

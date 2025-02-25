@@ -56,11 +56,11 @@ function obtenerIngresos($con, $fecha_inicio, $fecha_fin) {
         'ingresos_totales' => $ingresos_totales,
         'porcentaje' => round($porcentaje, 2) // Redondeamos a 2 decimales
     ];
-}
+} 
 // Reporte de stock crítico (productos con bajo stock)
-function obtenerCantidadStock($con, $min_stock = 50) {
+function obtenerCantidadStock($con, $min_stock = 100) {
     // Obtener la cantidad de perfumes en stock crítico
-    $queryCritico = "SELECT SUM(cantidad) AS total_critical_stock FROM perfumes WHERE cantidad <= ?";
+    $queryCritico = "SELECT COUNT(*) AS total_critical_stock FROM perfumes WHERE cantidad <= ?";
     $stmtCritico = $con->prepare($queryCritico);
     $stmtCritico->bind_param("i", $min_stock);
     $stmtCritico->execute();
@@ -69,7 +69,7 @@ function obtenerCantidadStock($con, $min_stock = 50) {
     $total_critical_stock = $dataCritico['total_critical_stock'] ?? 0;
 
     // Obtener el stock total
-    $queryTotal = "SELECT SUM(cantidad) AS total_stock FROM perfumes";
+    $queryTotal = "SELECT COUNT(*) AS total_stock FROM perfumes";
     $stmtTotal = $con->prepare($queryTotal);
     $stmtTotal->execute();
     $resultTotal = $stmtTotal->get_result();
@@ -82,7 +82,8 @@ function obtenerCantidadStock($con, $min_stock = 50) {
     return [
         'total_critical_stock' => $total_critical_stock,
         'total_stock' => $total_stock,
-        'porcentaje_critico' => round($porcentaje_critico, 2) // Redondeado a 2 decimales
+        'porcentaje_critico' => round($porcentaje_critico, 1), // Redondeado a 2 decimales
+        'porcentaje_total' => round(100, 2) // Redondeado a 2 decimales
     ];
 }
 
@@ -113,8 +114,13 @@ function obtenerProductosMasVendidos($con, $limite = 5) {
     return $stmt->get_result();
 }
 
+$fecha_inicio = date("Y-m-d 00:00:00");
+$fecha_fin = date("Y-m-d 23:59:59");
+$ventasHoy = obtenerVentasTotales($con, $fecha_inicio, $fecha_fin);
 
-
-
-
+$fecha_inicio_mes = date("Y-m-01");
+$fecha_fin_mes = date("Y-m-d H:i:s");
+$ingresos = obtenerIngresos($con, $fecha_inicio_mes, $fecha_fin_mes);
+$porcentaje = number_format($ingresos['porcentaje'], 0, '.', ',');
+$stockCritico = obtenerCantidadStock($con);
 ?>
