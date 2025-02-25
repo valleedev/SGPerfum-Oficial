@@ -50,7 +50,8 @@ if (!$usuario) {
                 include '../../global_components/starter.php';
                 include '../business_logic/reportes_logic.php';
                 include '../components/cards_general_report.php';
-                include '../../global_components/footer.php' 
+                include '../components/sales_today.php';
+                include '../../global_components/footer.php';
             ?>
             
         </div>
