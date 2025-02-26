@@ -62,6 +62,32 @@
                             <span class="menu-text"> Usuarios </span>
                         </a>
                     </li>
+                    <li class="menu-item">
+                        <a href="#menuIcons" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="bx bxs-report"></i></span>
+                            <span class="menu-text"> Reportes </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="menuIcons">
+                            <ul class="sub-menu">
+                                <li class="menu-item">
+                                    <a href="icons-feather.html" class="menu-link">
+                                        <span class="menu-text">Ingresos</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="icons-mdi.html" class="menu-link">
+                                        <span class="menu-text">Por vendedor</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="icons-dripicons.html" class="menu-link">
+                                        <span class="menu-text">Análíticas</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+            </li>
                 </ul>
             </div>
         </div>
