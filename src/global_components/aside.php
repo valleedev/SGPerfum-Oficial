@@ -76,7 +76,7 @@
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="icons-mdi.html" class="menu-link">
+                                    <a href="<?= REPORTS_VIEWS ?>users_reports.php" class="menu-link">
                                         <span class="menu-text">Por vendedor</span>
                                     </a>
                                 </li>
