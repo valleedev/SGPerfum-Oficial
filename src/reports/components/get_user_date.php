@@ -2,7 +2,7 @@
 include '../business_logic/get_users.php';
 
 ?>
-<div class="report p-3">
+<div class="report p-3 d-print-none">
     <form id="form" action="../business_logic/general_logic_report.php" method="POST" class="form-inline"">
         <div class="row">
             <div class="form-group mb-2 mr-2 col-md-3">

@@ -16,7 +16,7 @@ if (!$usuario) {
 
 // HEADER
 $title = 'Reportes por Usuario | SGPERFUM';
-include '../../global_components/head.php';
+include '../../global_components/head.php'; 
 ?>
 <body>
 

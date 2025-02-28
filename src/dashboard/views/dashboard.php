@@ -14,27 +14,10 @@ if (!$usuario) {
     exit;
 }
 
+// HEADER
+$title = 'Dashboard | SGPERFUM';
+include '../../global_components/head.php'; 
 ?>
-<!DOCTYPE html>
-<html lang="en" data-bs-theme="light" data-menu-color="brand" data-topbar-color="light">
-
-<head>
-    <meta charset="utf-8" />
-    <title>Dashboard | SGPERFUM</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-    <meta content="J. Sebastian Valle Barbarán" name="author" />
-
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="<?= ASSETS ?>images/favicon.ico">
-
-    <link href="<?= ASSETS ?>libs/morris.js/morris.css" rel="stylesheet" type="text/css" />
-
-    <!-- App css -->
-    <link href="<?= ASSETS ?>css/style.min.css" rel="stylesheet" type="text/css">
-    <link href="<?= ASSETS ?>css/icons.min.css" rel="stylesheet" type="text/css">
-    <script src="<?= ASSETS ?>js/config.js"></script>
-</head>
 
 <body>
 
