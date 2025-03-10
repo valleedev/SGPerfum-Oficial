@@ -80,11 +80,6 @@
                                         <span class="menu-text">Por vendedor</span>
                                     </a>
                                 </li>
-                                <li class="menu-item">
-                                    <a href="icons-dripicons.html" class="menu-link">
-                                        <span class="menu-text">Análíticas</span>
-                                    </a>
-                                </li>
                             </ul>
                         </div>
             </li>

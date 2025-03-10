@@ -13,13 +13,13 @@ function obtenerVentasTotales($con, $fecha_inicio, $fecha_fin) {
 function obtenerIngresos($con, $fecha_inicio, $fecha_fin) {
     // Consulta para obtener los ingresos del mes
     $query_mes = "SELECT SUM(valor_venta) AS total_ingresos 
-                  FROM (
-                      SELECT v.id_venta, MAX(dv.valor_venta) AS valor_venta
-                      FROM ventas v
-                      JOIN detalle_ventas dv ON v.id_venta = dv.id_venta
-                      WHERE v.fecha_hora BETWEEN ? AND ?  
-                      GROUP BY v.id_venta
-                  ) AS ventas_agrupadas;";
+                    FROM (
+                        SELECT v.id_venta, MAX(dv.valor_venta) AS valor_venta
+                        FROM ventas v
+                        JOIN detalle_ventas dv ON v.id_venta = dv.id_venta
+                        WHERE v.fecha_hora BETWEEN ? AND ?  
+                        GROUP BY v.id_venta
+                    ) AS ventas_agrupadas;";
 
     $stmt = $con->prepare($query_mes);
     $stmt->bind_param("ss", $fecha_inicio, $fecha_fin);
@@ -90,10 +90,10 @@ function obtenerCantidadStock($con, $min_stock = 100) {
 // Reporte de ventas por vendedor
 function obtenerVentasPorVendedor($con, $fecha_inicio, $fecha_fin) {
     $query = "SELECT u.nombre AS vendedor, SUM(v.total) as total_ventas 
-              FROM ventas v 
-              JOIN usuarios u ON v.vendedor_id = u.id 
-              WHERE v.fecha BETWEEN ? AND ? 
-              GROUP BY v.vendedor_id";
+                FROM ventas v 
+                JOIN usuarios u ON v.vendedor_id = u.id 
+                WHERE v.fecha BETWEEN ? AND ? 
+                GROUP BY v.vendedor_id";
     $stmt = $con->prepare($query);
     $stmt->bind_param("ss", $fecha_inicio, $fecha_fin);
     $stmt->execute();
@@ -103,11 +103,11 @@ function obtenerVentasPorVendedor($con, $fecha_inicio, $fecha_fin) {
 // Reporte de productos más vendidos
 function obtenerProductosMasVendidos($con, $limite = 5) {
     $query = "SELECT p.nombre, SUM(dv.cantidad) as cantidad_vendida 
-              FROM detalle_ventas dv 
-              JOIN productos p ON dv.producto_id = p.id 
-              GROUP BY dv.producto_id 
-              ORDER BY cantidad_vendida DESC 
-              LIMIT ?";
+                FROM detalle_ventas dv 
+                JOIN productos p ON dv.producto_id = p.id 
+                GROUP BY dv.producto_id 
+                ORDER BY cantidad_vendida DESC 
+                LIMIT ?";
     $stmt = $con->prepare($query);
     $stmt->bind_param("i", $limite);
     $stmt->execute();

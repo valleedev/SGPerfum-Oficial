@@ -14,7 +14,6 @@ include_once '../business_logic/sales_today_logic.php';
                         <tr>
                             <th>Nombre de Vendedor</th>
                             <th>Cantidad de Ventas</th>
-                            <th>Acción</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,11 +25,6 @@ include_once '../business_logic/sales_today_logic.php';
                                     </a>
                                 </td>
                                 <td><?php echo $row['cantidad_ventas']; ?></td>
-                                <td>
-                                    <a href="detalles_ventas.php?usuario_id=<?php echo $row['id_usuario']; ?>" class="btn btn-primary btn-sm">
-                                        Ver Detalles
-                                    </a>
-                                </td>
                             </tr>
                         <?php } ?>
                     </tbody>
