@@ -105,7 +105,7 @@ if (!$result) {
             </div>";
         }
     } else {
-        echo "<p>No se encontraron fragancias que coincidan con los filtros.</p>";
+        echo "<p>No se encontraron fragancias.</p>";
     }
     ?>
 </div>

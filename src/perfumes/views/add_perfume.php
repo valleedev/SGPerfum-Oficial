@@ -21,13 +21,11 @@ include '../../global_components/head.php';
 
 
 <body>
-
     <!-- Begin page -->
     <div class="layout-wrapper">
         <?php include '../../global_components/aside.php' ?>
         
         <div class="page-content">
-        
             <?php 
                 include '../../global_components/header.php' ;
                 $title = 'Añadir una fragancia nueva';
