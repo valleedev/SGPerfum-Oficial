@@ -37,11 +37,11 @@ echo "<script>let precio_gramo = '$precio_gramo';</script>"
         </div>
         
         <!-- 4. Ingreso de dinero recibido y cálculo de cambio -->
-        <div class="mt-3" style="max-width: 300px; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+        <div class="mt-3" style="max-width: 300px;  padding: 10px; border-radius: 5px;">
           <label for="receivedAmount">Dinero Recibido:</label>
           <input type="number" id="receivedAmount" class="form-control" placeholder="Ingrese el monto recibido" oninput="calculateChange()" step="0.01">
         </div>
-        <div class="mt-3" style="max-width: 300px; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+        <div class="mt-3" style="max-width: 300px;  padding: 10px; border-radius: 5px;">
           <h4>Cambio a Devolver: $<span id="changeAmount" style="color: white;">0.00</span></h4>
         </div>
         

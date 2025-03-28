@@ -53,6 +53,7 @@ function searchFragancia() {
       console.log("Respuesta JSON recibida:", data); // Para depuración
       if (data && data.data) {
         // Se asume que el JSON trae los campos 'clave_bouquet', 'nombre' e 'imagen'
+        // TODO: añadir la generación de id para el manejo de las consultas en el localStorage
         addFragranceBuy(data.data.clave_bouquet, data.data.nombre, data.data.imagen);
         updateSaleDetails();
       } else {
@@ -65,8 +66,8 @@ function searchFragancia() {
     });
 }
 
-function addFragranceBuy(clave, nombre, imagen) {
-  fraganciasInBuy.push({ clave, nombre, imagen });
+function addFragranceBuy(id, clave, nombre, imagen) {
+  fraganciasInBuy.push({ id, clave, nombre, imagen });
   saveFragancias(); // Guardar en localStorage
 }
 
@@ -77,7 +78,6 @@ function removeFragrance(clave) {
   saveFragancias();
   updateSaleDetails();
 }
-
 // Genera el formulario dinámico para cada fragancia en el array cargado desde localStorage
 function updateSaleDetails() {
   const saleDetails = document.getElementById("saleDetails");
@@ -191,6 +191,7 @@ function prepareSaleData() {
     const total_gramos = gramos_base + gramos_adicionales; 
 
     return {
+      id: fragancia.id,
       clave: fragancia.clave,
       nombre: fragancia.nombre,
       envase: envase,
