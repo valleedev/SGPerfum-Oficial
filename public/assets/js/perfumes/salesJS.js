@@ -66,8 +66,8 @@ function searchFragancia() {
     });
 }
 
-function addFragranceBuy(id, clave, nombre, imagen) {
-  fraganciasInBuy.push({ id, clave, nombre, imagen });
+function addFragranceBuy( clave, nombre, imagen) {
+  fraganciasInBuy.push({ clave, nombre, imagen });
   saveFragancias(); // Guardar en localStorage
 }
 
@@ -191,7 +191,6 @@ function prepareSaleData() {
     const total_gramos = gramos_base + gramos_adicionales; 
 
     return {
-      id: fragancia.id,
       clave: fragancia.clave,
       nombre: fragancia.nombre,
       envase: envase,
