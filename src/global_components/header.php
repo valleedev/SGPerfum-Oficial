@@ -39,7 +39,7 @@
 
                         <li class="dropdown">
                             <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                <img src="<?= ASSETS ?>images/users/avatar-4.jpg" alt="user-image" class="rounded-circle">
+                                <img src="<?= ASSETS ?>images/users/avatar-default.png" alt="user-image" class="rounded-circle">
                                 <span class="ms-1 d-none d-md-inline-block">
                                 <?php echo htmlspecialchars($usuario['nombre']); ?> <i class="mdi mdi-chevron-down"></i>
                                 </span>
