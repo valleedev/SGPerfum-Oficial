@@ -7,7 +7,7 @@ require 'update_user_modal.php';
 <button type="button" class="btn btn-primary col-lg-2 m-2" data-bs-toggle="modal" data-bs-target="#createUserModal">
     Crear Usuario
 </button>
-<div class="col-lg-10 m-2">
+<div class="col-lg-7 m-2">
 <div class="card">
     <div class="card-body">
         <div class="table-responsive">

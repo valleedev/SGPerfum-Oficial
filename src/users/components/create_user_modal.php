@@ -1,3 +1,16 @@
+<?php
+require_once '../../config.php';
+
+$roles = [];
+$sql = "SELECT id_rol, nombre_rol FROM roles ORDER BY id_rol DESC";
+$result = $con->query($sql);
+
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $roles[] = $row; 
+    }
+}
+?>
 <style> 
     .modal {
         z-index: 1055;
@@ -31,8 +44,11 @@
                     <div class="mb-3">
                         <label for="role" class="form-label">Rol</label>
                         <select class="form-select" id="role" name="role" required>
-                            <option value="user">Vendedor</option>
-                            <option value="admin">Administrador</option>
+                            <?php foreach ($roles as $role): ?>
+                                <option value="<?= htmlspecialchars($role['id_rol']) ?>">
+                                    <?= htmlspecialchars($role['nombre_rol']) ?>
+                                </option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Crear Usuario</button>
