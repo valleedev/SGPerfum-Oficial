@@ -71,11 +71,6 @@
                         <div class="collapse" id="menuIcons">
                             <ul class="sub-menu">
                                 <li class="menu-item">
-                                    <a href="icons-feather.html" class="menu-link">
-                                        <span class="menu-text">Ingresos</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
                                     <a href="<?= REPORTS_VIEWS ?>users_reports.php" class="menu-link">
                                         <span class="menu-text">Por vendedor</span>
                                     </a>

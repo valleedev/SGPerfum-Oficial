@@ -4,32 +4,36 @@ include '../config.php';
 
 try {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $correo = trim($_POST['email']);
+        $correo = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
         $contrasena = trim($_POST['password']);
         
-    
-        // Consulta para verificar credenciales
-        $sql = "SELECT * FROM usuarios WHERE email = ? AND contrasena = ?";
+        // Consulta para obtener el usuario por correo
+        $sql = "SELECT * FROM usuarios WHERE email = ?";
         $stmt = $con->prepare($sql);
-        $stmt->bind_param("ss", $correo, $contrasena);
+        $stmt->bind_param("s", $correo);
         $stmt->execute();
         $result = $stmt->get_result();
     
         if ($result->num_rows == 1) {
             $usuario = $result->fetch_assoc();
-            $_SESSION['usuario_id'] = $usuario['id_usuario'];
-            echo json_encode(["success" => true]);
-            exit;
-        } else {
-            echo json_encode(["success" => false, "message" => "Credenciales incorrectas"]);
-            exit;
+
+            // Verificar la contraseña encriptada
+            if ($contrasena == $usuario['contrasena']) {
+                $_SESSION['usuario_id'] = $usuario['id_usuario'];
+                echo json_encode(["success" => true]);
+                exit;
+            }
         }
+        // Mensaje genérico para credenciales inválidas
+        echo json_encode(["success" => false, "message" => "Credenciales inválidas"]);
+        exit;
     } else {
-        echo "Error en método";
+        echo json_encode(["success" => false, "message" => "Método no permitido"]);
         exit;
     }
-} catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
+} catch (mysqli_sql_exception $e) {
+    error_log("Error: " . $e->getMessage());
+    echo json_encode(["success" => false, "message" => "Error interno del servidor"]);
+    exit;
 }
-
 ?>

@@ -27,7 +27,7 @@
                             </a>
                         </div>
 
-                        <form id="form"  method="post">
+                        <form id="form"   method="post">
 
                             <div class="form-group mb-3">
                                 <label class="form-label" for="emailaddress">Gmail</label>
