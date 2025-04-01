@@ -2,6 +2,7 @@
 include_once '../../config.php'; 
 
 require 'create_user_modal.php';
+require 'update_user_modal.php';
 ?>
 <button type="button" class="btn btn-primary col-lg-2 m-2" data-bs-toggle="modal" data-bs-target="#createUserModal">
     Crear Usuario
@@ -42,7 +43,7 @@ require 'create_user_modal.php';
                             echo "<td>" . htmlspecialchars($row['email']) . "</td>";
                             echo "<td>" . htmlspecialchars($rol_row['nombre_rol']) . "</td>";
                             echo "<td>
-                                    <a href='../business_logic/editar_usuario.php?id=" . urlencode($row['id_usuario']) . "' class='btn btn-sm btn-primary'>Editar</a>
+                                    <button type='button' class='btn btn-sm btn-primary btn-edit-user' data-id='" . htmlspecialchars($row['id_usuario']) . "' data-bs-toggle='modal' data-bs-target='#updateUserModal'>Editar</button>
                                     <a href='../business_logic/delete_user.php?id_usuario=" . urlencode($row['id_usuario']) . "' class='btn btn-sm btn-danger' onclick='return confirm(\"¿Estás seguro de eliminar este usuario?\");'>Eliminar</a>
                                 </td>";
                             echo "</tr>";
@@ -61,3 +62,41 @@ require 'create_user_modal.php';
     <!--end card body-->
 </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const editButtons = document.querySelectorAll('.btn-edit-user');
+    editButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const userId = this.getAttribute('data-id');
+            
+            // Realizar una solicitud AJAX para obtener los datos del usuario
+            fetch(`../business_logic/get_user.php?id_usuario=${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Llenar los campos del modal con los datos del usuario
+                        document.getElementById('updateUserId').value = data.user.id_usuario;
+                        document.getElementById('updateUserName').value = data.user.nombre;
+                        document.getElementById('updateUserEmail').value = data.user.email;
+
+                        // Llenar el select de roles
+                        const roleSelect = document.getElementById('updateUserRole');
+                        roleSelect.innerHTML = ''; // Limpiar opciones existentes
+                        data.roles.forEach(role => {
+                            const option = document.createElement('option');
+                            option.value = role.id_rol;
+                            option.textContent = role.nombre_rol;
+                            if (role.id_rol == data.user.rol_id) {
+                                option.selected = true;
+                            }
+                            roleSelect.appendChild(option);
+                        });
+                    } else {
+                        alert('Error al cargar los datos del usuario.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    });
+});
+</script>
