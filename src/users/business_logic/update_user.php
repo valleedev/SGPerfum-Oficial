@@ -1,6 +1,8 @@
 <?php
 require_once '../../config.php';
 
+header('Content-Type: application/json'); // Establecer el encabezado para JSON
+
 try {
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         throw new Exception("Método no permitido.");
@@ -14,17 +16,32 @@ try {
     $nombre = trim($_POST['nombre']);
     $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
     $rol_id = intval($_POST['rol_id']);
+    $password = isset($_POST['password']) ? trim($_POST['password']) : '';
 
-    $sql = "UPDATE usuarios SET nombre = ?, email = ?, rol_id = ? WHERE id_usuario = ?";
+    // Construir la consulta SQL dinámicamente
+    $sql = "UPDATE usuarios SET nombre = ?, email = ?, rol_id = ?";
+    $params = ["ssi", $nombre, $email, $rol_id];
+
+    if (!empty($password)) {
+        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+        $sql .= ", contrasena = ?";
+        $params[0] .= "s"; // Añadir el tipo de dato para el hash
+        $params[] = $hashed_password;
+    }
+
+    $sql .= " WHERE id_usuario = ?";
+    $params[0] .= "i"; // Añadir el tipo de dato para id_usuario
+    $params[] = $id_usuario;
+
     $stmt = $con->prepare($sql);
-    $stmt->bind_param("ssii", $nombre, $email, $rol_id, $id_usuario);
+    $stmt->bind_param(...$params);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Usuario actualizado correctamente.'); window.location.href=document.referrer;</script>";
+        echo json_encode(["success" => true, "message" => "Usuario actualizado correctamente."]);
     } else {
         throw new Exception("Error al actualizar el usuario.");
     }
 } catch (Exception $e) {
-    echo "<script>alert('Error: " . addslashes($e->getMessage()) . "'); window.location.href=document.referrer;</script>";
+    echo json_encode(["success" => false, "message" => $e->getMessage()]);
 }
 ?>

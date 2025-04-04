@@ -2,13 +2,13 @@
             <!-- Brand Logo -->
             <div class="logo-box">
                 <!-- Brand Logo Light -->
-                <a href="<?= SRC ?>views/dashboard.php" class="logo-light">
+                <a href="<?= SRC ?>dashboard/views/dashboard.php" class="logo-light">
                     <img src="<?= ASSETS ?>images/logo-light.png" alt="logo" class="logo-lg" height="28">
                     <img src="<?= ASSETS ?>images/logo-sm.png" alt="small logo" class="logo-sm" height="28">
                 </a>
 
                 <!-- Brand Logo Dark -->
-                <a href="index.html" class="logo-dark">
+                <a href="<?= SRC ?>dashboard/views/dashboard.php" class="logo-dark">
                     <img src="<?= ASSETS ?>images/logo-dark.png" alt="dark logo" class="logo-lg" height="28">
                     <img src="<?= ASSETS ?>images/logo-sm.png" alt="small logo" class="logo-sm" height="28">
                 </a>
@@ -77,7 +77,13 @@
                                 </li>
                             </ul>
                         </div>
-            </li>
+                    </li>
+                    <li class="menu-item"> 
+                        <a href="<?= USERS_VIEWS ?>users.php" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class='bx bx-cog'></i></span>
+                            <span class="menu-text"> Configuraciones </span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

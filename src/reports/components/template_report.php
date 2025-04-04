@@ -29,11 +29,11 @@ include 'get_user_date.php';
         <thead class="table">
           <tr>
             <th>Fecha</th>
-            <th>ID Venta</th>
-            <th>Nombre Vendedor</th>
-            <th>Clave Fragancias</th>
-            <th>Envase Fragancias</th>
-            <th>Gramos Fragancia</th>
+            <th>ID</th>
+            <th>Vendedor</th>
+            <th>Clave</th>
+            <th>Envase</th>
+            <th>Gramos</th>
             <th>Total Gramos</th>
             <th>Total Venta</th>
           </tr>

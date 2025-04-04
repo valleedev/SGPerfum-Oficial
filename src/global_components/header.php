@@ -63,7 +63,7 @@ include_once 'modal_profile.php';
 
         const formData = new FormData(this);
 
-        fetch('<?= SRC ?>auth/update_profile.php', {
+        fetch('<?= USERS_BL ?>update_user.php', {
             method: 'POST',
             body: formData
         })

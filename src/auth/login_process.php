@@ -18,7 +18,7 @@ try {
             $usuario = $result->fetch_assoc();
 
             // Verificar la contraseña encriptada
-            if ($contrasena == $usuario['contrasena']) {
+            if (password_verify($contrasena, $usuario['contrasena'])) {
                 $_SESSION['usuario_id'] = $usuario['id_usuario'];
                 echo json_encode(["success" => true]);
                 exit;
