@@ -9,9 +9,8 @@ $sql->bind_result($precio_gramo);
 $sql->fetch();
 $sql->close();
 echo "<script>let precio_gramo = '$precio_gramo';</script>"
-
-
 ?>
+
 <div class="container my-3">
   <form id="saleForm" method="POST" action="../business_logic/process_sale.php">
     <div class="card">
@@ -31,10 +30,21 @@ echo "<script>let precio_gramo = '$precio_gramo';</script>"
         <div id="saleDetails"></div>
         <!-- Campo oculto que almacenará el detalle de la venta en JSON -->
         <input type="hidden" id="sale_data" name="sale_data" value="">
+        
         <!-- 3. Total acumulado de la venta -->
         <div class="mt-3">
           <h4>Total de la Venta: $<span id="totalSale">0.00</span></h4>
         </div>
+        
+        <!-- 4. Ingreso de dinero recibido y cálculo de cambio -->
+        <div class="mt-3" style="max-width: 300px;  padding: 10px; border-radius: 5px;">
+          <label for="receivedAmount">Dinero Recibido:</label>
+          <input type="number" id="receivedAmount" class="form-control" placeholder="Ingrese el monto recibido" oninput="calculateChange()" step="0.01">
+        </div>
+        <div class="mt-3" style="max-width: 300px;  padding: 10px; border-radius: 5px;">
+          <h4>Cambio a Devolver: $<span id="changeAmount" style="color: white;">0.00</span></h4>
+        </div>
+        
         <!-- Botón para procesar la venta -->
         <div class="mt-3">
           <button type="submit" class="btn btn-success">Procesar Venta</button>
@@ -43,4 +53,22 @@ echo "<script>let precio_gramo = '$precio_gramo';</script>"
     </div><!-- /.card -->
   </form>
 </div>
+
+<script>
+function calculateChange() {
+    let totalSale = parseFloat(document.getElementById('totalSale').textContent.replace(',', '.')) || 0;
+    let receivedAmount = parseFloat(document.getElementById('receivedAmount').value.replace(',', '.')) || 0;
+    let change = receivedAmount - totalSale;
+    let changeElement = document.getElementById('changeAmount');
+    
+    if (change < 0) {
+        changeElement.textContent = "Valor no válido";
+        changeElement.style.color = "red";
+    } else {
+        changeElement.textContent = change.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        changeElement.style.color = "white";
+    }
+}
+</script>
+
 <script src="<?= ASSETS ?>js/perfumes/salesJS.js"></script>

@@ -62,7 +62,7 @@ if (!$result) {
                 </select>
             </div>
             <div class="col-md-2">
-                <input type="number" id="size" name="size" class="form-control" placeholder="Cantidad" value="<?= htmlspecialchars($size) ?>">
+                <input type="number" id="size" name="size" class="form-control" placeholder="Cantidad" value="<?= htmlspecialchars($sizeFilter) ?>">
             </div>
             <div class="col-md-2 text-start">
                 <button type="submit" class="btn btn-primary btn-lr">Filtrar</button>
@@ -105,7 +105,7 @@ if (!$result) {
             </div>";
         }
     } else {
-        echo "<p>No se encontraron fragancias que coincidan con los filtros.</p>";
+        echo "<p>No se encontraron fragancias.</p>";
     }
     ?>
 </div>

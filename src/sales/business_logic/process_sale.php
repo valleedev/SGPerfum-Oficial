@@ -86,6 +86,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode(['success' => false, 'message' => 'Error al registrar el detalle de la venta']);
             exit;
         }
+        // Obtener la cantidad disponible del perfume antes de la venta
+        $queryCantidad = $con->prepare("SELECT cantidad FROM perfumes WHERE id_perfume = ?");
+        $queryCantidad->bind_param("i", $id_perfume);
+        $queryCantidad->execute();
+        $queryCantidad->bind_result($cantidad_disponible);
+        $queryCantidad->fetch();
+        $queryCantidad->close();
+
+        // Verificar que hay suficiente cantidad disponible
+        if ($cantidad_disponible < $gramos_en_venta) {
+            echo json_encode(['success' => false, 'message' => "Stock insuficiente para el perfume con clave '$clave_fragancia'"]);
+            exit;
+        }
+
+        // Restar los gramos vendidos de la cantidad disponible
+        $nueva_cantidad = $cantidad_disponible - $gramos_en_venta;
+        $updateQuery = $con->prepare("UPDATE perfumes SET cantidad = ? WHERE id_perfume = ?");
+        $updateQuery->bind_param("ii", $nueva_cantidad, $id_perfume);
+        if (!$updateQuery->execute()) {
+            echo json_encode(['success' => false, 'message' => 'Error al actualizar la cantidad de perfume disponible']);
+            exit;
+        }
+        $updateQuery->close();
+
     }
 
     $stmtVenta->close();
