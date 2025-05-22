@@ -30,10 +30,16 @@ function renderCard($title, $value, $badge, $percentage, $progressBarClass, $ico
 <div class="p-3">
     <div class="row">
         <?php
-        echo renderCard('Ventas', number_format($ventasHoy['total_ventas'], 0, ',', '.'), 'Hoy', 100, 'bg-info', 'mdi-arrow-up text-primary');
-        echo renderCard('Ingresos en ventas', '$' . number_format($ingresos['ingresos_mes'], 0, '.', ','), 'Este mes', $porcentaje, 'bg-success', 'mdi-arrow-up text-success');
-        echo renderCard('Stock Crítico', $stockCritico['total_critical_stock'], 'Todos', $stockCritico['porcentaje_critico'], 'bg-danger', 'mdi-arrow-down text-danger');
-        echo renderCard('Total Stock', $stockCritico['total_stock'], 'Todos', $stockCritico['porcentaje_total'], 'bg-info', 'mdi-arrow-up text-primary');
+        if ($rol_id == 1) {
+            echo renderCard('Ventas', number_format($ventasHoy['total_ventas'], 0, ',', '.'), 'Hoy', 100, 'bg-info', 'mdi-arrow-up text-primary');
+            echo renderCard('Ingresos en ventas', '$' . number_format($ingresos['ingresos_mes'], 0, '.', ','), 'Este mes', $porcentaje, 'bg-success', 'mdi-arrow-up text-success');
+            echo renderCard('Stock Crítico', $stockCritico['total_critical_stock'], 'Todos', $stockCritico['porcentaje_critico'], 'bg-danger', 'mdi-arrow-down text-danger');
+            echo renderCard('Total Stock', $stockCritico['total_stock'], 'Todos', $stockCritico['porcentaje_total'], 'bg-info', 'mdi-arrow-up text-primary');
+        } else {
+            echo renderCard('Ventas', number_format($ventasHoy['total_ventas'], 0, ',', '.'), 'Hoy', 100, 'bg-info', 'mdi-arrow-up text-primary');
+            echo renderCard('Ingresos en ventas', '$' . number_format($ingresos['ingresos_mes'], 0, '.', ','), 'Este mes', $porcentaje, 'bg-success', 'mdi-arrow-up text-success');
+
+        }
         ?>
     </div>
 </div>

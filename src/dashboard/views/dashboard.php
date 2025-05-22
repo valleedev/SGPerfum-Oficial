@@ -13,6 +13,8 @@ if (!$usuario) {
     echo "Error al obtener los datos del usuario.";
     exit;
 }
+//Obtener el rol id
+$rol_id = $usuario['rol_id'];
 
 // HEADER
 $title = 'Dashboard | SGPERFUM';
@@ -31,9 +33,14 @@ include '../../global_components/head.php';
                 $page = 'Dashboard';
                 $extraPage = 'SGPERFUM';
                 include '../../global_components/starter.php';
-                include '../business_logic/reportes_logic.php';
-                include '../components/cards_general_report.php';
-                include '../components/sales_today.php';
+                if ($rol_id == 1) {
+                    include '../business_logic/reportes_logic.php';
+                    include '../components/cards_general_report.php';
+                    include '../components/sales_today.php';
+                } else {
+                    
+                    include '../components/cards_general_report.php';
+                };
                 include '../../global_components/footer.php';
             ?>
             
